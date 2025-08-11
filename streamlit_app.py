@@ -31,32 +31,120 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Modern UI Design with comprehensive styling
+# Professional Dark Theme UI Design (inspired by Node.js version)
 st.markdown("""
 <style>
+    /* Import fonts for professional typography */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    
     /* Hide Streamlit default elements */
     .stDeployButton {display:none;}
     footer {visibility: hidden;}
     .stApp > header {visibility: hidden;}
     
-    /* Main app styling */
-    .main .block-container {
-        padding-top: 1rem;
-        padding-left: 2rem;
-        padding-right: 2rem;
-        max-width: 1200px;
+    /* Dark theme background */
+    .stApp {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        color: #f8fafc;
     }
     
-    /* Hero Section */
+    /* Main app styling */
+    .main .block-container {
+        padding-top: 0;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        max-width: 1400px;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    /* Top Navigation Bar */
+    .top-nav {
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 2rem;
+        margin: 0 -2rem 2rem -2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+    }
+    
+    .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+    }
+    
+    .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin: 0;
+    }
+    
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+    
+    .nav-link {
+        color: #94a3b8;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+        color: #06b6d4;
+        background: rgba(6, 182, 212, 0.1);
+    }
+    
+    .pro-account-btn {
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .pro-account-btn:hover {
+        background: linear-gradient(135deg, #0891b2, #0e7490);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+    }
+    
+    /* Hero Section - Dark theme with vibrant accents */
     .hero-section {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 4rem 2rem;
-        border-radius: 20px;
-        margin: 2rem 0;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+        padding: 4rem 3rem;
+        border-radius: 16px;
+        margin: 2rem 0 3rem 0;
         text-align: center;
         color: white;
         position: relative;
         overflow: hidden;
+        border: 1px solid rgba(6, 182, 212, 0.2);
     }
     
     .hero-section::before {
@@ -66,37 +154,43 @@ st.markdown("""
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+        background: radial-gradient(circle at 30% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
         pointer-events: none;
     }
     
     .hero-title {
-        font-size: 3.5rem;
-        font-weight: 800;
+        font-size: 4rem;
+        font-weight: 900;
         margin: 0;
-        background: linear-gradient(45deg, #ffffff, #f0f9ff);
+        line-height: 1.1;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .hero-title .ai-text {
+        background: linear-gradient(135deg, #10b981, #06b6d4);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background-clip: text;
+    }
+    
+    .hero-title .clinical-text {
+        color: #f8fafc;
     }
     
     .hero-subtitle {
-        font-size: 1.4rem;
-        margin: 1rem 0;
-        opacity: 0.95;
-        font-weight: 300;
-    }
-    
-    .hero-description {
-        font-size: 1.1rem;
-        opacity: 0.8;
-        max-width: 600px;
-        margin: 2rem auto 0;
+        font-size: 1.25rem;
+        margin: 1.5rem 0;
+        color: #94a3b8;
+        font-weight: 400;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
         line-height: 1.6;
     }
     
-    /* Navigation Pills */
-    .nav-pills {
+    /* Modern Navigation Buttons */
+    .nav-buttons {
         display: flex;
         justify-content: center;
         gap: 1rem;
@@ -104,91 +198,128 @@ st.markdown("""
         flex-wrap: wrap;
     }
     
-    .nav-pill {
-        background: white;
+    .nav-button {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        color: #94a3b8;
         padding: 1rem 2rem;
-        border-radius: 50px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        border: none;
+        border-radius: 12px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
         cursor: pointer;
         transition: all 0.3s ease;
         font-weight: 600;
-        color: #374151;
+        font-size: 0.95rem;
         text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-width: 140px;
+        justify-content: center;
     }
     
-    .nav-pill:hover {
+    .nav-button:hover {
+        background: linear-gradient(135deg, #334155 0%, #475569 100%);
+        color: #06b6d4;
+        border-color: rgba(6, 182, 212, 0.3);
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        background: #f8fafc;
+        box-shadow: 0 8px 20px rgba(6, 182, 212, 0.15);
     }
     
-    .nav-pill.active {
-        background: #0ea5e9;
+    .nav-button.active {
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
         color: white;
-        box-shadow: 0 8px 25px rgba(14,165,233,0.3);
+        border-color: #06b6d4;
+        box-shadow: 0 8px 20px rgba(6, 182, 212, 0.3);
     }
     
-    /* Cards */
+    /* Cards - Dark theme professional */
     .feature-card {
-        background: white;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
         border-radius: 16px;
-        padding: 2rem;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        border: 1px solid #f1f5f9;
-        margin: 1rem 0;
+        padding: 2.5rem;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        margin: 2rem 0;
         transition: all 0.3s ease;
+        color: #f8fafc;
     }
     
     .feature-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        transform: translateY(-2px);
+        border-color: rgba(6, 182, 212, 0.3);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
     }
     
     .search-card {
-        background: linear-gradient(145deg, #ffffff, #f8fafc);
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         border-radius: 20px;
         padding: 3rem;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        border: 1px solid #e2e8f0;
+        border: 1px solid rgba(6, 182, 212, 0.3);
         margin: 2rem 0;
+        position: relative;
+        overflow: hidden;
     }
     
-    /* Statistics */
+    .search-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #06b6d4, #10b981, #06b6d4);
+    }
+    
+    /* Statistics - Professional dark cards */
     .stats-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin: 2rem 0;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
     }
     
     .stat-card {
-        background: white;
-        padding: 2rem;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        padding: 2.5rem 2rem;
         border-radius: 16px;
         text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        border: 1px solid #f1f5f9;
+        border: 1px solid rgba(6, 182, 212, 0.3);
         transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #06b6d4, #10b981);
     }
     
     .stat-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(6, 182, 212, 0.2);
+        border-color: rgba(6, 182, 212, 0.5);
     }
     
     .stat-number {
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: #0ea5e9;
+        font-size: 2.8rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, #06b6d4, #10b981);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         margin: 0;
+        font-family: 'Inter', sans-serif;
     }
     
     .stat-label {
         font-size: 1rem;
-        color: #64748b;
-        margin: 0.5rem 0 0;
+        color: #cbd5e1;
+        margin: 0.8rem 0 0;
         font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
     
     /* Registry Status */
@@ -311,33 +442,70 @@ st.markdown("""
         box-shadow: 0 2px 8px rgba(239,68,68,0.3);
     }
     
-    /* Forms */
+    /* Forms - Dark theme styling */
     .stSelectbox > div > div {
         border-radius: 12px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        background: rgba(30, 41, 59, 0.8);
+        color: #f8fafc;
     }
     
     .stTextInput > div > div > input {
         border-radius: 12px;
-        border: 1px solid #e2e8f0;
-        padding: 1rem;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        background: rgba(30, 41, 59, 0.8);
+        color: #f8fafc;
+        padding: 1rem 1.25rem;
         font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .stTextInput > div > div > input:focus {
+        border-color: #06b6d4;
+        box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
     }
     
     .stButton > button {
-        background: linear-gradient(135deg, #0ea5e9, #0284c7);
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
         color: white;
         border: none;
         border-radius: 12px;
-        padding: 0.75rem 2rem;
+        padding: 0.875rem 2.5rem;
         font-weight: 600;
-        box-shadow: 0 4px 15px rgba(14,165,233,0.3);
+        font-size: 1rem;
+        box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
         transition: all 0.3s ease;
+        font-family: 'Inter', sans-serif;
     }
     
     .stButton > button:hover {
+        background: linear-gradient(135deg, #0891b2, #0e7490);
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(14,165,233,0.4);
+        box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
+    }
+    
+    /* Streamlit specific dark theme overrides */
+    .stApp .main .block-container {
+        background: transparent;
+    }
+    
+    /* Headers styling */
+    .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {
+        color: #f8fafc !important;
+        font-family: 'Inter', sans-serif !important;
+    }
+    
+    .stApp h1 {
+        font-size: 2.5rem !important;
+        font-weight: 700 !important;
+        background: linear-gradient(135deg, #06b6d4, #10b981);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .stApp h2 {
+        color: #06b6d4 !important;
+        font-weight: 600 !important;
     }
     
     /* Progress indicators */
@@ -425,14 +593,34 @@ def main():
     logger.info("Starting TrialScope AI application")
     
     try:
-        # Hero Section
+        # Top Navigation
+        st.markdown("""
+        <div class="top-nav">
+            <div class="logo-section">
+                <div class="logo-icon">🧬</div>
+                <h1 class="logo-text">TrialScope AI</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Dashboard</a>
+                <a href="#" class="nav-link">Scholar</a>
+                <a href="#" class="nav-link">Analytics</a>
+                <a href="#" class="nav-link">API</a>
+                <a href="#" class="pro-account-btn">
+                    ⚡ Pro Account
+                </a>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Hero Section - Professional dark theme
         st.markdown("""
         <div class="hero-section fade-in">
-            <h1 class="hero-title">TrialScope AI</h1>
-            <p class="hero-subtitle">AI-Powered Clinical Trial Intelligence Platform</p>
-            <p class="hero-description">
-                Discover and analyze clinical trials from 16 global registries with advanced AI classification. 
-                Access 750,000+ trials worldwide with 85-95% AI confidence scoring.
+            <h1 class="hero-title">
+                <span class="ai-text">AI-Powered</span> <span class="clinical-text">Clinical<br>Trial Intelligence</span>
+            </h1>
+            <p class="hero-subtitle">
+                Search, analyze, and discover clinical trials with advanced AI 
+                classification focusing exclusively on human research studies
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -498,12 +686,12 @@ def display_navigation():
         st.session_state.current_section = 'search'
     
     st.markdown("""
-    <div class="nav-pills">
-        <div class="nav-pill" id="search-pill">🔍 Search Trials</div>
-        <div class="nav-pill" id="registries-pill">🌍 Registry Status</div>
-        <div class="nav-pill" id="analytics-pill">📊 Analytics</div>
-        <div class="nav-pill" id="scholar-pill">📚 Academic Search</div>
-        <div class="nav-pill" id="about-pill">ℹ️ About</div>
+    <div class="nav-buttons">
+        <div class="nav-button">🔍 Search Trials</div>
+        <div class="nav-button">🌍 Registry Status</div>
+        <div class="nav-button">📊 Analytics</div>
+        <div class="nav-button">📚 Academic Search</div>
+        <div class="nav-button">ℹ️ About</div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -587,8 +775,14 @@ def search_interface():
     logger.info("Rendering search interface")
     
     st.markdown('<div class="search-card fade-in">', unsafe_allow_html=True)
-    st.header("🔍 Intelligent Clinical Trial Discovery")
-    st.markdown("Search across 16 global registries with AI-powered relevance scoring")
+    st.markdown("""
+    <h2 style="color: #f8fafc; margin-bottom: 0.5rem; font-size: 2rem; font-weight: 700;">
+        🔍 Intelligent Clinical Trial Discovery
+    </h2>
+    <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 2rem;">
+        Search across 16 global registries with AI-powered relevance scoring
+    </p>
+    """, unsafe_allow_html=True)
     
     # Search configuration in main area
     with st.expander("⚙️ Search Configuration", expanded=False):
@@ -740,75 +934,7 @@ def configure_search_inline():
         'classification_depth': classification_depth
     }
 
-def search_interface(config):
-    """Enhanced search interface with better UX"""
-    st.markdown('<div class="search-container">', unsafe_allow_html=True)
-    st.header("🔍 Clinical Trial Discovery")
-    
-    # Search form with enhanced options
-    with st.form("trial_search", clear_on_submit=False):
-        col1, col2 = st.columns([3, 1])
-        
-        with col1:
-            query = st.text_input(
-                "Search Query",
-                placeholder="e.g., alzheimer's disease, metformin diabetes, covid-19 vaccines",
-                help="Enter disease names, drug compounds, therapeutic areas, or research topics",
-                key="search_query"
-            )
-        
-        with col2:
-            search_type = st.selectbox(
-                "Search Focus",
-                ["Disease/Condition", "Drug/Treatment", "Combined Search", "Therapeutic Area"],
-                help="Optimize search strategy based on your research focus"
-            )
-        
-        # Additional search parameters
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            phase_filter = st.multiselect(
-                "Trial Phases",
-                ["Phase I", "Phase II", "Phase III", "Phase IV", "Pre-clinical"],
-                default=["Phase II", "Phase III"],
-                help="Select relevant trial phases"
-            )
-        
-        with col2:
-            year_range = st.slider(
-                "Study Years",
-                2015, 2024, (2020, 2024),
-                help="Filter by study start year range"
-            )
-        
-        with col3:
-            min_enrollment = st.number_input(
-                "Min Enrollment",
-                min_value=0, max_value=10000, value=20,
-                help="Minimum number of participants"
-            )
-        
-        submitted = st.form_submit_button("🔍 Search Clinical Trials", type="primary")
-    
-    st.markdown('</div>', unsafe_allow_html=True)
-    
-    if submitted and query:
-        search_params = {
-            **config,
-            'query': query,
-            'search_type': search_type,
-            'phase_filter': phase_filter,
-            'year_range': year_range,
-            'min_enrollment': min_enrollment
-        }
-        
-        with st.spinner("🔍 Searching across selected registries..."):
-            results = search_clinical_trials(search_params)
-            st.session_state.search_results = results
-    
-    # Display results
-    if st.session_state.search_results:
-        display_search_results(st.session_state.search_results, config)
+
 
 def search_clinical_trials(params):
     """Enhanced clinical trial search with comprehensive logging"""
