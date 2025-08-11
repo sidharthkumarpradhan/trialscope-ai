@@ -9,6 +9,7 @@ I've created a production-ready Streamlit version of your TrialScope AI platform
 streamlit_deployment/
 ├── streamlit_app.py          # Main application (2,000+ lines)
 ├── requirements.txt          # Python dependencies
+├── LICENSE                   # MIT License  
 ├── .streamlit/config.toml    # Streamlit theme configuration
 ├── README.md                 # Documentation
 └── DEPLOYMENT_INSTRUCTIONS.md # This guide
@@ -68,6 +69,14 @@ streamlit run streamlit_app.py
 
 Only one variable needed:
 - `ANTHROPIC_API_KEY` - Your Anthropic Claude API key
+
+## 💾 Database Requirements
+
+**None!** The Streamlit version uses built-in session state for data management:
+- No PostgreSQL database needed
+- No database setup or configuration required
+- Session data handled automatically by Streamlit
+- Perfect for rapid deployment and testing
 
 ## 🎨 What Users Will See
 

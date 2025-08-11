@@ -12,6 +12,7 @@ This folder contains everything needed for Streamlit Cloud deployment:
 streamlit_deployment/
 ├── streamlit_app.py          # Main application file
 ├── requirements.txt          # Python dependencies
+├── LICENSE                   # MIT License
 ├── .streamlit/
 │   └── config.toml          # Streamlit configuration
 └── README.md               # This file
