@@ -31,10 +31,10 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Professional Dark Theme UI Design (inspired by Node.js version)
+# Professional Modern UI Design (matching Node.js version quality)
 st.markdown("""
 <style>
-    /* Import fonts for professional typography */
+    /* Import professional fonts */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     
     /* Hide Streamlit default elements */
@@ -42,10 +42,11 @@ st.markdown("""
     footer {visibility: hidden;}
     .stApp > header {visibility: hidden;}
     
-    /* Dark theme background */
+    /* Professional background with better contrast */
     .stApp {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-        color: #f8fafc;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        color: #1e293b;
+        font-family: 'Inter', sans-serif;
     }
     
     /* Main app styling */
@@ -57,46 +58,46 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
     
-    /* Top Navigation Bar */
+    /* Professional Top Navigation */
     .top-nav {
-        background: rgba(15, 23, 42, 0.95);
-        backdrop-filter: blur(10px);
+        background: #1e293b;
         padding: 1rem 2rem;
-        margin: 0 -2rem 2rem -2rem;
+        margin: 0 -2rem 0 -2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
     
     .logo-section {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 0.75rem;
     }
     
     .logo-icon {
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
         background: linear-gradient(135deg, #06b6d4, #0891b2);
-        border-radius: 10px;
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         color: white;
+        font-weight: bold;
     }
     
     .logo-text {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 700;
-        color: #f8fafc;
+        color: white;
         margin: 0;
     }
     
     .nav-links {
         display: flex;
-        gap: 2rem;
+        gap: 1.5rem;
         align-items: center;
     }
     
@@ -104,12 +105,18 @@ st.markdown("""
         color: #94a3b8;
         text-decoration: none;
         font-weight: 500;
-        transition: color 0.3s ease;
+        transition: all 0.2s ease;
         padding: 0.5rem 1rem;
         border-radius: 6px;
+        font-size: 0.95rem;
     }
     
-    .nav-link:hover, .nav-link.active {
+    .nav-link:hover {
+        color: #06b6d4;
+        background: rgba(6, 182, 212, 0.1);
+    }
+    
+    .nav-link.active {
         color: #06b6d4;
         background: rgba(6, 182, 212, 0.1);
     }
@@ -117,15 +124,15 @@ st.markdown("""
     .pro-account-btn {
         background: linear-gradient(135deg, #06b6d4, #0891b2);
         color: white;
-        padding: 0.5rem 1.5rem;
-        border-radius: 25px;
+        padding: 0.5rem 1.25rem;
+        border-radius: 20px;
         text-decoration: none;
         font-weight: 600;
-        font-size: 0.875rem;
-        transition: all 0.3s ease;
+        font-size: 0.85rem;
+        transition: all 0.2s ease;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.4rem;
     }
     
     .pro-account-btn:hover {
@@ -134,9 +141,9 @@ st.markdown("""
         box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
     }
     
-    /* Hero Section - Dark theme with vibrant accents */
+    /* Beautiful Hero Section */
     .hero-section {
-        background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
         padding: 4rem 3rem;
         border-radius: 16px;
         margin: 2rem 0 3rem 0;
@@ -144,7 +151,7 @@ st.markdown("""
         color: white;
         position: relative;
         overflow: hidden;
-        border: 1px solid rgba(6, 182, 212, 0.2);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     }
     
     .hero-section::before {
@@ -154,17 +161,19 @@ st.markdown("""
         left: 0;
         right: 0;
         bottom: 0;
-        background: radial-gradient(circle at 30% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
-                    radial-gradient(circle at 70% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+        background: radial-gradient(circle at 30% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%);
         pointer-events: none;
     }
     
     .hero-title {
-        font-size: 4rem;
-        font-weight: 900;
+        font-size: 3.5rem;
+        font-weight: 800;
         margin: 0;
         line-height: 1.1;
         font-family: 'Inter', sans-serif;
+        position: relative;
+        z-index: 1;
     }
     
     .hero-title .ai-text {
@@ -175,87 +184,87 @@ st.markdown("""
     }
     
     .hero-title .clinical-text {
-        color: #f8fafc;
+        color: #ffffff;
     }
     
     .hero-subtitle {
-        font-size: 1.25rem;
-        margin: 1.5rem 0;
-        color: #94a3b8;
+        font-size: 1.2rem;
+        margin: 1.5rem auto 0 auto;
+        color: rgba(255, 255, 255, 0.9);
         font-weight: 400;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
+        max-width: 700px;
         line-height: 1.6;
+        position: relative;
+        z-index: 1;
     }
     
-    /* Modern Navigation Buttons */
+    /* Navigation Buttons */
     .nav-buttons {
         display: flex;
         justify-content: center;
         gap: 1rem;
-        margin: 3rem 0;
+        margin: 2rem 0;
         flex-wrap: wrap;
     }
     
     .nav-button {
-        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-        color: #94a3b8;
-        padding: 1rem 2rem;
-        border-radius: 12px;
-        border: 1px solid rgba(148, 163, 184, 0.2);
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        border: none;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
         font-weight: 600;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         text-decoration: none;
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        min-width: 140px;
+        min-width: 130px;
         justify-content: center;
+        box-shadow: 0 2px 8px rgba(6, 182, 212, 0.2);
     }
     
     .nav-button:hover {
-        background: linear-gradient(135deg, #334155 0%, #475569 100%);
-        color: #06b6d4;
-        border-color: rgba(6, 182, 212, 0.3);
+        background: linear-gradient(135deg, #0891b2, #0e7490);
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(6, 182, 212, 0.15);
+        box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
     }
     
     .nav-button.active {
-        background: linear-gradient(135deg, #06b6d4, #0891b2);
+        background: linear-gradient(135deg, #1e293b, #334155);
         color: white;
-        border-color: #06b6d4;
-        box-shadow: 0 8px 20px rgba(6, 182, 212, 0.3);
+        box-shadow: 0 4px 15px rgba(30, 41, 59, 0.3);
     }
     
-    /* Cards - Dark theme professional */
+    /* Cards */
     .feature-card {
-        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-        border-radius: 16px;
-        padding: 2.5rem;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        margin: 2rem 0;
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        border: 1px solid #e2e8f0;
+        margin: 1.5rem 0;
         transition: all 0.3s ease;
-        color: #f8fafc;
+        color: #1e293b;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
     
     .feature-card:hover {
         transform: translateY(-2px);
         border-color: rgba(6, 182, 212, 0.3);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 8px 25px rgba(6, 182, 212, 0.1);
     }
     
     .search-card {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        border-radius: 20px;
-        padding: 3rem;
-        border: 1px solid rgba(6, 182, 212, 0.3);
+        background: white;
+        border-radius: 16px;
+        padding: 2.5rem;
+        border: 1px solid #e2e8f0;
         margin: 2rem 0;
         position: relative;
         overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     }
     
     .search-card::before {
@@ -264,24 +273,25 @@ st.markdown("""
         top: 0;
         left: 0;
         right: 0;
-        height: 2px;
+        height: 4px;
         background: linear-gradient(90deg, #06b6d4, #10b981, #06b6d4);
     }
     
-    /* Statistics - Professional dark cards */
+    /* Statistics Cards */
     .stats-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 2rem;
-        margin: 3rem 0;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0 3rem 0;
     }
     
     .stat-card {
-        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-        padding: 2.5rem 2rem;
-        border-radius: 16px;
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
         text-align: center;
-        border: 1px solid rgba(6, 182, 212, 0.3);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e2e8f0;
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
@@ -293,30 +303,28 @@ st.markdown("""
         top: 0;
         left: 0;
         right: 0;
-        height: 3px;
+        height: 4px;
         background: linear-gradient(90deg, #06b6d4, #10b981);
     }
     
     .stat-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 30px rgba(6, 182, 212, 0.2);
-        border-color: rgba(6, 182, 212, 0.5);
+        box-shadow: 0 12px 30px rgba(6, 182, 212, 0.15);
+        border-color: rgba(6, 182, 212, 0.3);
     }
     
     .stat-number {
-        font-size: 2.8rem;
-        font-weight: 900;
-        background: linear-gradient(135deg, #06b6d4, #10b981);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #06b6d4;
         margin: 0;
         font-family: 'Inter', sans-serif;
     }
     
     .stat-label {
-        font-size: 1rem;
-        color: #cbd5e1;
-        margin: 0.8rem 0 0;
+        font-size: 0.95rem;
+        color: #64748b;
+        margin: 0.5rem 0 0;
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -442,20 +450,20 @@ st.markdown("""
         box-shadow: 0 2px 8px rgba(239,68,68,0.3);
     }
     
-    /* Forms - Dark theme styling */
+    /* Forms */
     .stSelectbox > div > div {
-        border-radius: 12px;
-        border: 1px solid rgba(148, 163, 184, 0.3);
-        background: rgba(30, 41, 59, 0.8);
-        color: #f8fafc;
+        border-radius: 8px;
+        border: 1px solid #cbd5e1;
+        background: white;
+        color: #1e293b;
     }
     
     .stTextInput > div > div > input {
-        border-radius: 12px;
-        border: 1px solid rgba(148, 163, 184, 0.3);
-        background: rgba(30, 41, 59, 0.8);
-        color: #f8fafc;
-        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        border: 1px solid #cbd5e1;
+        background: white;
+        color: #1e293b;
+        padding: 0.75rem 1rem;
         font-size: 1rem;
         font-family: 'Inter', sans-serif;
     }
@@ -463,49 +471,55 @@ st.markdown("""
     .stTextInput > div > div > input:focus {
         border-color: #06b6d4;
         box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+        outline: none;
     }
     
     .stButton > button {
         background: linear-gradient(135deg, #06b6d4, #0891b2);
         color: white;
         border: none;
-        border-radius: 12px;
-        padding: 0.875rem 2.5rem;
+        border-radius: 8px;
+        padding: 0.75rem 2rem;
         font-weight: 600;
         font-size: 1rem;
-        box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
-        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(6, 182, 212, 0.2);
+        transition: all 0.2s ease;
         font-family: 'Inter', sans-serif;
     }
     
     .stButton > button:hover {
         background: linear-gradient(135deg, #0891b2, #0e7490);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
-    }
-    
-    /* Streamlit specific dark theme overrides */
-    .stApp .main .block-container {
-        background: transparent;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
     }
     
     /* Headers styling */
     .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {
-        color: #f8fafc !important;
+        color: #1e293b !important;
         font-family: 'Inter', sans-serif !important;
     }
     
     .stApp h1 {
-        font-size: 2.5rem !important;
+        font-size: 2.2rem !important;
         font-weight: 700 !important;
-        background: linear-gradient(135deg, #06b6d4, #10b981);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #06b6d4 !important;
     }
     
     .stApp h2 {
-        color: #06b6d4 !important;
+        color: #1e293b !important;
         font-weight: 600 !important;
+        font-size: 1.75rem !important;
+    }
+    
+    .stApp h3 {
+        color: #334155 !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Text styling */
+    .stApp p, .stApp div {
+        color: #475569;
+        font-family: 'Inter', sans-serif;
     }
     
     /* Progress indicators */
@@ -776,10 +790,10 @@ def search_interface():
     
     st.markdown('<div class="search-card fade-in">', unsafe_allow_html=True)
     st.markdown("""
-    <h2 style="color: #f8fafc; margin-bottom: 0.5rem; font-size: 2rem; font-weight: 700;">
+    <h2 style="color: #1e293b; margin-bottom: 0.5rem; font-size: 2rem; font-weight: 700;">
         🔍 Intelligent Clinical Trial Discovery
     </h2>
-    <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 2rem;">
+    <p style="color: #64748b; font-size: 1.1rem; margin-bottom: 2rem;">
         Search across 16 global registries with AI-powered relevance scoring
     </p>
     """, unsafe_allow_html=True)
