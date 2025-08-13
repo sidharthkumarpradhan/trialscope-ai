@@ -207,6 +207,7 @@ __pycache__/
 # Runtime files
 run_streamlit.py
 streamlit.log
+streamlit_app_backup.py
 app.log
 
 # Development and testing
