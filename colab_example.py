@@ -5,41 +5,61 @@ Copy and paste this code into your Google Colab notebook
 """
 
 # Step 1: Install required packages
-# !pip install requests pandas openpyxl anthropic
+# !pip install requests pandas openpyxl anthropic beautifulsoup4 lxml
 
 # Step 2: Import and use the API
 from colab_api import search_and_export
 
-# Step 3: Basic usage examples
+# Step 3: Comprehensive multi-registry search examples
 
-# Example 1: Search for diabetes trials (no API key needed)
-print("🔍 Example 1: Searching for diabetes trials...")
+# Example 1: Basic multi-registry search (no API keys needed)
+print("🌍 Example 1: Multi-registry diabetes research...")
 excel_file = search_and_export(
-    query="diabetes treatment clinical trial",
-    max_results=25,
-    filename="diabetes_trials.xlsx"
+    query="diabetes treatment",
+    max_results=50,
+    include_international=True,
+    include_academic=True,
+    filename="diabetes_multi_registry.xlsx"
 )
-print(f"✅ Results saved to: {excel_file}")
+print(f"✅ Multi-registry results saved to: {excel_file}")
 
-# Example 2: Search with AI classification (requires Anthropic API key)
-print("\n🔍 Example 2: Advanced search with AI scoring...")
-# Uncomment and add your API key:
-# ANTHROPIC_API_KEY = "your-api-key-here"
+# Example 2: Full-featured search with all APIs (requires API keys)
+print("\n🚀 Example 2: Complete search with AI + Google Scholar...")
+# Add your API keys here:
+# ANTHROPIC_API_KEY = "your-anthropic-key-here"
+# SERPAPI_KEY = "your-serpapi-key-here"
+# 
 # excel_file = search_and_export(
 #     query="alzheimer's disease treatment",
 #     anthropic_api_key=ANTHROPIC_API_KEY,
-#     max_results=50,
-#     filename="alzheimers_trials_ai_scored.xlsx"
+#     serpapi_key=SERPAPI_KEY,
+#     max_results=80,
+#     include_international=True,
+#     include_academic=True,
+#     filename="alzheimers_comprehensive_search.xlsx"
 # )
 
-# Example 3: Cancer immunotherapy search
-print("\n🔍 Example 3: Cancer immunotherapy search...")
+# Example 3: International registries focus
+print("\n🌐 Example 3: Global cancer immunotherapy search...")
 excel_file = search_and_export(
     query="cancer immunotherapy checkpoint inhibitor",
-    max_results=30,
-    filename="cancer_immunotherapy_trials.xlsx"
+    max_results=60,
+    include_international=True,
+    include_academic=True,
+    filename="cancer_global_registries.xlsx"
 )
-print(f"✅ Cancer trials saved to: {excel_file}")
+print(f"✅ Global registry search completed: {excel_file}")
+
+# Example 4: Academic literature focus
+print("\n📚 Example 4: Academic literature + trials...")
+excel_file = search_and_export(
+    query="COVID-19 vaccine efficacy",
+    max_results=40,
+    include_international=False,  # Only ClinicalTrials.gov
+    include_academic=True,        # Focus on academic papers
+    filename="covid_academic_focus.xlsx"
+)
+print(f"✅ Academic-focused search saved: {excel_file}")
 
 print("\n📋 Your Excel files contain these columns:")
 print("- Title: Study title")

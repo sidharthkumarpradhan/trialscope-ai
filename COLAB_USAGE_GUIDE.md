@@ -11,33 +11,39 @@
 
 ### Step 2: Install Dependencies
 ```python
-!pip install requests pandas openpyxl anthropic
+!pip install requests pandas openpyxl anthropic beautifulsoup4 lxml
 ```
 
-### Step 3: Basic Usage (No API Key Required)
+### Step 3: Multi-Registry Search (No API Keys Required)
 ```python
 from colab_api import search_and_export
 
-# Search for clinical trials
+# Comprehensive search across all 16 registries + academic literature
 excel_file = search_and_export(
     query="diabetes treatment",
-    max_results=30,
-    filename="my_clinical_trials.xlsx"
+    max_results=50,
+    include_international=True,  # Include WHO, EU, ANZCTR, CTRI, etc.
+    include_academic=True,       # Include PubMed literature
+    filename="diabetes_comprehensive.xlsx"
 )
 
-print(f"Results saved to: {excel_file}")
+print(f"Multi-registry results saved to: {excel_file}")
 ```
 
-### Step 4: Advanced Usage (With AI Classification)
+### Step 4: Full-Featured Search (With All API Keys)
 ```python
-# Add your Anthropic API key for AI-powered relevance scoring
-ANTHROPIC_API_KEY = "your-api-key-here"
+# Add your API keys for enhanced functionality
+ANTHROPIC_API_KEY = "your-anthropic-key-here"     # For AI classification
+SERPAPI_KEY = "your-serpapi-key-here"             # For Google Scholar
 
 excel_file = search_and_export(
     query="alzheimer's disease treatment",
     anthropic_api_key=ANTHROPIC_API_KEY,
-    max_results=50,
-    filename="alzheimers_trials_ai_scored.xlsx"
+    serpapi_key=SERPAPI_KEY,
+    max_results=80,
+    include_international=True,
+    include_academic=True,
+    filename="alzheimers_full_featured.xlsx"
 )
 ```
 
@@ -126,24 +132,50 @@ for query in queries:
 
 ## Data Sources
 
-- **ClinicalTrials.gov**: 450,000+ clinical trials (primary source)
-- **PubMed**: Related research papers and literature
-- **AI Classification**: Anthropic Claude AI for relevance scoring
+### Clinical Trial Registries (16 Total)
+- **ClinicalTrials.gov**: 450,000+ trials (US, primary source)
+- **WHO ICTRP**: 500,000+ trials (Global aggregation)
+- **EU CTIS**: 85,000+ trials (European Union)
+- **ISRCTN**: 45,000+ trials (UK/International)
+- **ANZCTR**: 18,000+ trials (Australia/New Zealand)
+- **CTRI**: 25,000+ trials (India)
+- **DRKS**: 15,000+ trials (Germany)
+- **jRCT**: 12,000+ trials (Japan)
+- **IRCT**: 8,000+ trials (Iran)
+- **TCTR**: 5,000+ trials (Thailand)
+- **CRIS**: 4,000+ trials (Korea)
+- **PACTR**: 2,500+ trials (Pan-African)
+- **SLCTR**: 1,500+ trials (Sri Lanka)
+- **REPEC**: 1,000+ trials (Peru)
+- **LBCTR**: 800+ trials (Lebanon)
+- **RPCEC**: 3,000+ trials (Cuba)
+
+### Academic Literature
+- **PubMed**: NCBI medical literature database
+- **Google Scholar**: 180M+ academic papers (via SerpAPI)
+
+### AI Enhancement
+- **Anthropic Claude**: AI relevance scoring and classification
 
 ## API Key Setup
 
-### Getting an Anthropic API Key:
+### Getting an Anthropic API Key (For AI Classification):
 1. Visit: https://console.anthropic.com/
 2. Create an account or sign in
 3. Go to API Keys section
 4. Create a new API key
 5. Copy and use in your scripts
 
-### Benefits of Using API Key:
-- AI-powered relevance scoring (0-100)
-- Intelligent classification categories
-- Confidence scores for each result
-- Better result ranking and filtering
+**Benefits**: AI-powered relevance scoring (0-100), intelligent classification, confidence scores
+
+### Getting a SerpAPI Key (For Google Scholar):
+1. Visit: https://serpapi.com/
+2. Sign up for a free account (100 searches/month free)
+3. Go to Dashboard → API Key
+4. Copy your API key
+5. Use in your scripts for Google Scholar access
+
+**Benefits**: Access to Google Scholar's 180M+ academic papers, citation counts, publication data
 
 ## Troubleshooting
 
@@ -162,7 +194,7 @@ for query in queries:
 
 ```python
 # Cell 1: Setup
-!pip install requests pandas openpyxl anthropic
+!pip install requests pandas openpyxl anthropic beautifulsoup4 lxml
 
 # Cell 2: Upload files and import
 from google.colab import files
@@ -170,14 +202,27 @@ uploaded = files.upload()  # Upload colab_api.py
 
 from colab_api import search_and_export
 
-# Cell 3: Search and export
+# Cell 3: Comprehensive multi-registry search
 excel_file = search_and_export(
-    query="diabetes treatment clinical trial",
-    max_results=50,
-    filename="diabetes_research_2024.xlsx"
+    query="diabetes treatment",
+    max_results=80,
+    include_international=True,  # All 16 registries
+    include_academic=True,       # PubMed + Google Scholar
+    filename="diabetes_comprehensive_2024.xlsx"
 )
 
-# Cell 4: Download results
+# Cell 4: Advanced search with AI (optional - requires API keys)
+# ANTHROPIC_KEY = "your-key"
+# SERPAPI_KEY = "your-key"
+# excel_file = search_and_export(
+#     query="cancer immunotherapy",
+#     anthropic_api_key=ANTHROPIC_KEY,
+#     serpapi_key=SERPAPI_KEY,
+#     max_results=100,
+#     filename="cancer_ai_enhanced.xlsx"
+# )
+
+# Cell 5: Download results
 from google.colab import files
 files.download(excel_file)
 ```
